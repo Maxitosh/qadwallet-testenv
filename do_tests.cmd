@@ -15,7 +15,7 @@ cd chain
 
 echo Test chain is being deployed...
 
-start "TESTBEDGETH" start.cmd
+start "TESTBEDGETH" start.cmd %gethbin%
 
 rem **** HACK - wait for 5 seconds o_O ****
 ping 127.0.0.1 -n 6 -w 1000 > NUL
@@ -26,8 +26,10 @@ echo Tests running...
 
 %pythonbin% gen_json_win.py
 
-%pythonbin% test.py %gethbin% %pythonbin%
+%pythonbin% test.py %pythonbin%
 
 echo Test chain is shuting down...
 
 taskkill.exe /fi "WINDOWTITLE eq TESTBEDGETH*" > NUL
+
+cd ..
